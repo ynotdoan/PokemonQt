@@ -2,4 +2,7 @@
     <qresource prefix="/map">
         <file>Assets/overworld.png</file>
     </qresource>
+    <qresource prefix="/chars">
+        <file>Assets/player.png</file>
+    </qresource>
 </RCC>

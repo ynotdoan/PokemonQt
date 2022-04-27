@@ -16,12 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # All .cpp files
 SOURCES += \
+    Src/player.cpp \
     Src/game.cpp \
-    Src/main.cpp
+    Src/main.cpp \
+    Src/sprite.cpp
 
 # All .h files
 HEADERS += \
-    Headers/game.h
+    Headers/game.h \
+    Headers/player.h \
+    Headers/sprite.h
 
 RESOURCES += \
     assets.qrc
