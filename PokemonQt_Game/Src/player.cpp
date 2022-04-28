@@ -8,7 +8,7 @@
 
 Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
-    this->x_pos = 1450; this->y_pos = 1300;
+    this->x_pos = 1550; this->y_pos = 1400;
     this->scene = scene;
     this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
     setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
@@ -22,7 +22,9 @@ Player::~Player()
 void Player::keyPressEvent(QKeyEvent *event)
 {
     /* When a movement key is pressed, the program calls setPixmap() to update the direction the sprite
-     * is facing to match the directional key pressed. Then the scene is updated by increasing or decreasing
+     * is facing to match the directional key pressed. Then the function checks if the current xy positions
+     * are at the edge of the map, if so, then the player is not able to advance in that direction. If the
+     * player is not at or in range of an edge of the map, then the scene is updated by increasing or decreasing
      * its xy position corresponding to the direction.
      */
     switch (event->key()) {
@@ -59,7 +61,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         // Down movement key
         case Qt::Key_S:
             setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
-            if (this->y_pos == 1500-40) break;
+            if (this->y_pos == 1600-40) break;
             if (!this->checkVerticalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x(),
                                           this->scene->sceneRect().y() + 10,
@@ -74,7 +76,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         // Right movement key
         case Qt::Key_D:
             setPixmap(this->sprite->getSprite(this->sprite->getRightSprite(), this->sprite->getRightSpriteIndex()));
-            if (this->x_pos == 1500-40) break;
+            if (this->x_pos == 1600-40) break;
             if (!this->checkHorizontalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x() + 10,
                                           this->scene->sceneRect().y(),
@@ -91,18 +93,22 @@ void Player::keyPressEvent(QKeyEvent *event)
             qDebug() << QString("interation initiated");
             break;
 
-        // Breaks if a key not specified above is pressed.
+        // If a key not specified above is pressed, program will move on until another key press is detected.
         default: break;
     }
 }
 
+/* CheckBound functions check whether or not the player is within range of an edge of the map. The function checks
+ * if the xy positions are greater than 1100 or less than 400, and if either is true, function will return true so
+ * the map's position will not shift anymore and the player will only move on screen until they hit an edge.
+ * The player is centered at (400, 400).
+ */
 bool Player::checkVerticalBounds()
 {
-    qDebug() << this->y_pos;
-    return (this->y_pos >= 1500-400 || this->y_pos <= 400);
+    return (this->y_pos >= 1600-400 || this->y_pos <= 400);
 }
 
 bool Player::checkHorizontalBounds()
 {
-    return (this->x_pos >= 1500-400 || this->x_pos <= 400);
+    return (this->x_pos >= 1600-400 || this->x_pos <= 400);
 }

@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/map">
-        <file>Assets/overworld.png</file>
         <file>Assets/overworld1.png</file>
+        <file>Assets/collision_square.png</file>
     </qresource>
     <qresource prefix="/chars">
         <file>Assets/player.png</file>
