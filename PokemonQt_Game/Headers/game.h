@@ -12,8 +12,6 @@ class Game: public QGraphicsView
 {
     Q_OBJECT
 
-    bool collides();
-
     QGraphicsScene *scene;
     Player *player;
     Grid *grid;

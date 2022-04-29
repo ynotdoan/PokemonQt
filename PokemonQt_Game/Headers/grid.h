@@ -13,7 +13,7 @@ class Grid: public QObject, public QGraphicsPixmapItem
 
     QPixmap map;
     QGraphicsScene *scene;
-    bool collidable, encounterable;
+//    bool collidable, encounterable;
     std::vector< std::vector<Grid*> > grid_blocks;
 
 public:
@@ -26,6 +26,8 @@ public:
     void addGrid();
 
     QGraphicsPixmapItem *block;
+        bool collidable, encounterable;
+
 };
 
 #endif // GRID_H

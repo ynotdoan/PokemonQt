@@ -2,6 +2,7 @@
 #include <QImage>
 #include <QPixmap>
 #include <QGraphicsScene>
+#include <QList>
 #include <QDebug>
 #include "Headers/player.h"
 #include "Headers/sprite.h"
@@ -12,6 +13,16 @@ Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
     this->scene = scene;
     this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
     setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
+
+    g = new Grid(this->scene);
+    g->collidable = true;
+    g->block->setPos(32*45, 32*45);
+    this->scene->addItem(g);
+    g2 = new Grid(this->scene);
+    g2->collidable = true;
+    g2->block->setPos(32*45, 32*44);
+    this->scene->addItem(g2);
+
 }
 
 Player::~Player()
@@ -29,6 +40,7 @@ void Player::addPlayer()
     this->setPos(1550, 1400); // 1550, 1400
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
+    this->mapToScene(1550, 1400);
     this->scene->addItem(this);
 }
 
@@ -45,6 +57,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         case Qt::Key_W:
             setPixmap(this->sprite->getSprite(this->sprite->getUpSprite(), this->sprite->getUpSpriteIndex()));
             if (this->y_pos == 0) break;
+            if (this->checkCollision()) break;
             if (!this->checkVerticalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x(),
                                           this->scene->sceneRect().y() - 10,
@@ -59,6 +72,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         // Left movement key
         case Qt::Key_A:
             setPixmap(this->sprite->getSprite(this->sprite->getLeftSprite(), this->sprite->getLeftSpriteIndex()));
+            if (this->checkCollision()) break;
             if (this->x_pos == 0) break;
             if (!this->checkHorizontalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x() - 10,
@@ -75,6 +89,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         case Qt::Key_S:
             setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
             if (this->y_pos == 1600-40) break;
+            if (this->checkCollision()) break;
             if (!this->checkVerticalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x(),
                                           this->scene->sceneRect().y() + 10,
@@ -90,6 +105,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         case Qt::Key_D:
             setPixmap(this->sprite->getSprite(this->sprite->getRightSprite(), this->sprite->getRightSpriteIndex()));
             if (this->x_pos == 1600-40) break;
+            if (this->checkCollision()) break;
             if (!this->checkHorizontalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x() + 10,
                                           this->scene->sceneRect().y(),
@@ -124,4 +140,17 @@ bool Player::checkVerticalBounds()
 bool Player::checkHorizontalBounds()
 {
     return (this->x_pos >= 1600-400 || this->x_pos <= 400);
+}
+
+bool Player::checkCollision()
+{
+    QList<QGraphicsItem*> l = this->collidingItems();
+    l.removeLast();
+    for (QGraphicsItem* z : l) {
+        QGraphicsPixmapItem *a = dynamic_cast<QGraphicsPixmapItem*>(z);
+        if (a->collidesWithItem(this)) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -13,11 +13,10 @@ Game::Game(QWidget *parent)
 
     this->player = new Player(this->scene);
     this->player->addPlayer();
-
+/*
     this->grid = new Grid(this->scene);
     this->grid->addGrid();
-
-    collides();
+*/
 }
 
 Game::~Game()
@@ -48,16 +47,6 @@ void Game::setMap()
     // Fixed size so players can't resize window.
     this->setFixedSize(800, 800);
 
-}
-
-bool Game::collides()
-{
-    // WIP Test function to see how collisions work.
-    Grid *g = new Grid(this->scene);
-    g->block->setPos(32*48, 32*44);
-    this->scene->addItem(g);
-    qDebug() << this->player->collidesWithItem(g);
-    qDebug() << this->player->collidingItems();
 }
 
 void Game::run()
