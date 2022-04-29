@@ -6,6 +6,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include "Headers/sprite.h"
+#include "Headers/grid.h"
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -23,6 +24,7 @@ public:
     Player(QGraphicsScene *scene);
     ~Player();
 
+    void addPlayer();
     void keyPressEvent(QKeyEvent *event);
 };
 

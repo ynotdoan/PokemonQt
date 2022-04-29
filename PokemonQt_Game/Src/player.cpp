@@ -19,6 +19,19 @@ Player::~Player()
     delete this->scene; delete this->sprite;
 }
 
+void Player::addPlayer()
+{
+    /* Add the player's sprite to the scene. Set the player's initial position to (1450, 1300), which is
+     * the bottom-right of the map where the player will begin. The player is set to be focusable in-order
+     * to control the sprite. If the player is not moving, try clicking directly on the player with the mouse
+     * and keeping the mouse within the game's window.
+     */
+    this->setPos(1550, 1400); // 1550, 1400
+    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    this->setFocus();
+    this->scene->addItem(this);
+}
+
 void Player::keyPressEvent(QKeyEvent *event)
 {
     /* When a movement key is pressed, the program calls setPixmap() to update the direction the sprite

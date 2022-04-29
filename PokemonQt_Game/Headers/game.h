@@ -4,24 +4,26 @@
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <vector>
 #include "Headers/player.h"
-#include "Headers/collisions.h"
+#include "Headers/grid.h"
 
 class Game: public QGraphicsView
 {
     Q_OBJECT
 
-    void addPlayer();
-    void addCollisions();
+    bool collides();
 
     QGraphicsScene *scene;
     Player *player;
-    Collisions *collisions;
+    Grid *grid;
+    std::vector< std::vector<Grid*> > grid_blocks;
 
 public:
     Game(QWidget *parent = 0);
     ~Game();
 
+    void setMap();
     void run();
 };
 
