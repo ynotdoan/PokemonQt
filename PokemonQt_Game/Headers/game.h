@@ -7,6 +7,7 @@
 #include <vector>
 #include "Headers/player.h"
 #include "Headers/grid.h"
+#include "Headers/arceus.h"
 
 class Game: public QGraphicsView
 {
@@ -15,6 +16,7 @@ class Game: public QGraphicsView
     QGraphicsScene *scene;
     Player *player;
     Grid *grid;
+    Arceus *arc;
     std::vector< std::vector<Grid*> > grid_blocks;
 
 public:

@@ -1,6 +1,7 @@
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <vector>
+#include <QDebug>
 #include "Headers/grid.h"
 
 Grid::Grid(QGraphicsScene *scene): QGraphicsPixmapItem()
@@ -16,18 +17,6 @@ Grid::~Grid()
     delete this->scene; delete this->block;
 }
 
-void Grid::setCollideable(std::vector< std::vector<Grid*> > &g)
-{
-    std::pair<int, int> collidable_objs[] = {
-        std::make_pair(0, 1), std::make_pair(0, 3), std::make_pair(0, 11)
-    };
-    g[49][45]->collidable = true;
-}
-
-void Grid::setEncounterable(std::vector< std::vector<Grid*> > &g)
-{
-
-}
 
 void Grid::addGrid()
 {
@@ -45,4 +34,21 @@ void Grid::addGrid()
             this->scene->addItem(this->grid_blocks[i/32][j/32]);
         }
     }
+}
+
+void Grid::addCollisions()
+{
+/*
+    int collision_points[] = {
+        1,3,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,39
+    };
+    for (int i = 0; i < 30; i++) {
+        Grid* g = new Grid(this->scene);
+        g->block->setPos(32*collision_points[i], 0);
+        this->scene->addItem(g);
+    }
+*/
+    this->grid_blocks[49][48]->collidable = true;
+    this->grid_blocks[48][48]->collidable = true;
+    this->grid_blocks[47][48]->collidable = true;
 }

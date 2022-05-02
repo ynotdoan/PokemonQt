@@ -5,5 +5,8 @@
     </qresource>
     <qresource prefix="/chars">
         <file>Assets/player.png</file>
+        <file>Assets/Pikachu.png</file>
+        <file>Assets/arceus.png</file>
+        <file>Assets/arceusnew.png</file>
     </qresource>
 </RCC>

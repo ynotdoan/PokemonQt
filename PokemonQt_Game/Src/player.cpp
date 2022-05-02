@@ -2,6 +2,7 @@
 #include <QImage>
 #include <QPixmap>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
 #include <QList>
 #include <QDebug>
 #include "Headers/player.h"
@@ -11,18 +12,20 @@ Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
     this->x_pos = 1550; this->y_pos = 1400;
     this->scene = scene;
-    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
-    setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
 
+    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/Pikachu.png")), 35, 50);
+    setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
+/*
     g = new Grid(this->scene);
     g->collidable = true;
-    g->block->setPos(32*45, 32*45);
+    g->name = 69;
+    g->block->setPos(32*40, 32*46);
     this->scene->addItem(g);
     g2 = new Grid(this->scene);
     g2->collidable = true;
     g2->block->setPos(32*45, 32*44);
     this->scene->addItem(g2);
-
+*/
 }
 
 Player::~Player()
@@ -40,7 +43,7 @@ void Player::addPlayer()
     this->setPos(1550, 1400); // 1550, 1400
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
-    this->mapToScene(1550, 1400);
+//    this->mapToScene(1550, 1400);
     this->scene->addItem(this);
 }
 
@@ -144,11 +147,13 @@ bool Player::checkHorizontalBounds()
 
 bool Player::checkCollision()
 {
-    QList<QGraphicsItem*> l = this->collidingItems();
-    l.removeLast();
-    for (QGraphicsItem* z : l) {
-        QGraphicsPixmapItem *a = dynamic_cast<QGraphicsPixmapItem*>(z);
-        if (a->collidesWithItem(this)) {
+
+    QList<QGraphicsItem*> items = this->collidingItems();
+    items.removeLast(); // Remove last item because it is the player.
+    for (const auto& item : items) {
+        qDebug() << qgraphicsitem_cast<Grid*>(item)->collidable;
+        qDebug() << qgraphicsitem_cast<Grid*>(item)->encounterable << '\n';
+        if (item->collidesWithItem(this)) {
             return true;
         }
     }

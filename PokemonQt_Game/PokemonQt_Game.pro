@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # All .cpp files
 SOURCES += \
+    Src/arceus.cpp \
     Src/grid.cpp \
     Src/player.cpp \
     Src/game.cpp \
@@ -27,7 +28,8 @@ HEADERS += \
     Headers/game.h \
     Headers/grid.h \
     Headers/player.h \
-    Headers/sprite.h
+    Headers/sprite.h \
+    Headers/arceus.h
 
 RESOURCES += \
     assets.qrc
