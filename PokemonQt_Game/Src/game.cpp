@@ -16,12 +16,9 @@ Game::Game(QWidget *parent)
 
     this->arc = new Arceus(this->scene);
     this->arc->addArceus();
-/*
-    this->grid = new Grid(this->scene);
-    this->grid->addGrid();
 
+    this->grid = new Grid(this->scene);
     this->grid->addCollisions();
-*/
 }
 
 Game::~Game()

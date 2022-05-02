@@ -12,20 +12,8 @@ Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
     this->x_pos = 1550; this->y_pos = 1400;
     this->scene = scene;
-
-    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/Pikachu.png")), 35, 50);
+    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
     setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
-/*
-    g = new Grid(this->scene);
-    g->collidable = true;
-    g->name = 69;
-    g->block->setPos(32*40, 32*46);
-    this->scene->addItem(g);
-    g2 = new Grid(this->scene);
-    g2->collidable = true;
-    g2->block->setPos(32*45, 32*44);
-    this->scene->addItem(g2);
-*/
 }
 
 Player::~Player()
@@ -151,8 +139,6 @@ bool Player::checkCollision()
     QList<QGraphicsItem*> items = this->collidingItems();
     items.removeLast(); // Remove last item because it is the player.
     for (const auto& item : items) {
-        qDebug() << qgraphicsitem_cast<Grid*>(item)->collidable;
-        qDebug() << qgraphicsitem_cast<Grid*>(item)->encounterable << '\n';
         if (item->collidesWithItem(this)) {
             return true;
         }
