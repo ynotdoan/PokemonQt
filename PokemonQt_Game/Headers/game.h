@@ -24,6 +24,7 @@ public:
     ~Game();
 
     void setMap();
+    void addMap();
     void run();
 };
 

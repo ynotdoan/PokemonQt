@@ -5,7 +5,7 @@
 Arceus::Arceus(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
     this->scene = scene;
-    QImage image = QImage(":/chars/Assets/arceusnew.png");
+    QImage image = QImage(":/chars/Assets/arceus1.png");
     this->arc = this->scene->addPixmap(QPixmap::fromImage(image).scaled(96, 96, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 

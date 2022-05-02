@@ -15,11 +15,11 @@ class Player: public QObject, public QGraphicsPixmapItem
     bool checkVerticalBounds();
     bool checkHorizontalBounds();
     bool checkCollision();
+    void checkEncounter();
 
     QPixmap map;
     QGraphicsScene *scene;
     Sprite *sprite;
-    int x_pos, y_pos;
 
 public:
     Player(QGraphicsScene *scene);
@@ -27,9 +27,6 @@ public:
 
     void addPlayer();
     void keyPressEvent(QKeyEvent *event);
-
-    Grid *g;
-    Grid *g2;
 };
 
 #endif // PLAYER_H

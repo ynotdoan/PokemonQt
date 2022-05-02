@@ -10,9 +10,9 @@
 
 Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
-    this->x_pos = 1550; this->y_pos = 1400;
     this->scene = scene;
-    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
+    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/Pikachu.png")), 35, 50);
+    this->shape();
     setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
 }
 
@@ -31,7 +31,6 @@ void Player::addPlayer()
     this->setPos(1550, 1400); // 1550, 1400
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
-//    this->mapToScene(1550, 1400);
     this->scene->addItem(this);
 }
 
@@ -47,9 +46,10 @@ void Player::keyPressEvent(QKeyEvent *event)
         // Up movement key
         case Qt::Key_W:
             setPixmap(this->sprite->getSprite(this->sprite->getUpSprite(), this->sprite->getUpSpriteIndex()));
-            if (this->y_pos == 0) break;
-            if (this->checkCollision()) break;
-            if (!this->checkVerticalBounds()) {
+            this->checkEncounter();
+            if (this->y() == 0 || this->checkCollision()) {
+                break;
+            } else if (!this->checkVerticalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x(),
                                           this->scene->sceneRect().y() - 10,
                                           this->scene->width(),
@@ -57,15 +57,15 @@ void Player::keyPressEvent(QKeyEvent *event)
                                           );
             }
             setPos(x(), y() - 10);
-            this->y_pos -= 10;
             break;
 
         // Left movement key
         case Qt::Key_A:
             setPixmap(this->sprite->getSprite(this->sprite->getLeftSprite(), this->sprite->getLeftSpriteIndex()));
-            if (this->checkCollision()) break;
-            if (this->x_pos == 0) break;
-            if (!this->checkHorizontalBounds()) {
+            this->checkEncounter();
+            if (this->x() == 0 || this->checkCollision()) {
+                break;
+            } else if (!this->checkHorizontalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x() - 10,
                                           this->scene->sceneRect().y(),
                                           this->scene->width(),
@@ -73,15 +73,15 @@ void Player::keyPressEvent(QKeyEvent *event)
                                           );
             }
             setPos(x() - 10, y());
-            this->x_pos -= 10;
             break;
 
         // Down movement key
         case Qt::Key_S:
             setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
-            if (this->y_pos == 1600-40) break;
-            if (this->checkCollision()) break;
-            if (!this->checkVerticalBounds()) {
+            this->checkEncounter();
+            if (this->y() == (this->scene->width()*2)-40 || this->checkCollision()) {
+                break;
+            } else if (!this->checkVerticalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x(),
                                           this->scene->sceneRect().y() + 10,
                                           this->scene->width(),
@@ -89,23 +89,23 @@ void Player::keyPressEvent(QKeyEvent *event)
                                           );
             }
             setPos(x(), y() + 10);
-            this->y_pos += 10;
             break;
 
         // Right movement key
         case Qt::Key_D:
             setPixmap(this->sprite->getSprite(this->sprite->getRightSprite(), this->sprite->getRightSpriteIndex()));
-            if (this->x_pos == 1600-40) break;
-            if (this->checkCollision()) break;
-            if (!this->checkHorizontalBounds()) {
+            this->checkEncounter();
+            if (this->x() == (this->scene->width()*2)-40 || this->checkCollision()) {
+                break;
+            } else if (!this->checkHorizontalBounds()) {
                 this->scene->setSceneRect(this->scene->sceneRect().x() + 10,
                                           this->scene->sceneRect().y(),
                                           this->scene->width(),
                                           this->scene->height()
                                           );
+
             }
             setPos(x() + 10, y());
-            this->x_pos += 10;
             break;
 
         // Interact key
@@ -125,17 +125,18 @@ void Player::keyPressEvent(QKeyEvent *event)
  */
 bool Player::checkVerticalBounds()
 {
-    return (this->y_pos >= 1600-400 || this->y_pos <= 400);
+//    qDebug() << "y: " << this->y();
+    return (this->y() > 1600-400 || this->y() < 400);
 }
 
 bool Player::checkHorizontalBounds()
 {
-    return (this->x_pos >= 1600-400 || this->x_pos <= 400);
+//    qDebug() << "x: " << this->x();
+    return (this->x() > 1600-400 || this->x() < 400);
 }
 
 bool Player::checkCollision()
 {
-
     QList<QGraphicsItem*> items = this->collidingItems();
     items.removeLast(); // Remove last item because it is the player.
     for (const auto& item : items) {
@@ -144,4 +145,14 @@ bool Player::checkCollision()
         }
     }
     return false;
+}
+
+void Player::checkEncounter()
+{
+//    Grid *g = new Grid(this->scene);
+    if (this->x() > 20*32 && this->x() < 36*32 && this->y() < 38*32 && this->y() > 31*32) {
+        if (Grid::encounterChance()) {
+            Grid::encounter();
+        }
+    }
 }

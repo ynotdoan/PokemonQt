@@ -1,6 +1,9 @@
+#include <QWidget>
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include <QDebug>
 #include "Headers/grid.h"
 
@@ -8,10 +11,10 @@
 
 Grid::Grid(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
-    this->collidable = false; this->encounterable = false;
     this->scene = scene;
     QImage image = QImage(":/map/Assets/collision_square.png");
     this->block = this->scene->addPixmap(QPixmap::fromImage(image).scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    srand(time(0));
 }
 
 Grid::~Grid()
@@ -105,4 +108,18 @@ void Grid::addCollisions()
             this->scene->addItem(g);
         }
     }
+}
+
+bool Grid::encounterChance()
+{
+    // 1/20 chance to run into a wild pokemon. If random num is greater than 5, return. Else battle.
+    if ((rand() % 100) + 1 > 5) return false;
+    return true;
+}
+
+void Grid::encounter()
+{
+    QWidget *battle_window = new QWidget();
+    battle_window->setFixedSize(600, 400);
+    battle_window->show();
 }
