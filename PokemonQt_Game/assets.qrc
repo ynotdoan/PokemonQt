@@ -2,6 +2,7 @@
     <qresource prefix="/map">
         <file>Assets/overworld1.png</file>
         <file>Assets/collision_square.png</file>
+        <file>Assets/pokemonstartsceen.gif</file>
     </qresource>
     <qresource prefix="/chars">
         <file>Assets/player.png</file>

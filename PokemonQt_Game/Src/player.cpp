@@ -11,7 +11,7 @@
 Player::Player(QGraphicsScene *scene): QGraphicsPixmapItem()
 {
     this->scene = scene;
-    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/Pikachu.png")), 35, 50);
+    this->sprite = new Sprite(QPixmap::fromImage(QImage(":/chars/Assets/player.png")), 35, 50);
     this->shape();
     setPixmap(this->sprite->getSprite(this->sprite->getDownSprite(), this->sprite->getDownSpriteIndex()));
 }
@@ -149,10 +149,13 @@ bool Player::checkCollision()
 
 void Player::checkEncounter()
 {
-//    Grid *g = new Grid(this->scene);
     if (this->x() > 20*32 && this->x() < 36*32 && this->y() < 38*32 && this->y() > 31*32) {
         if (Grid::encounterChance()) {
             Grid::encounter();
         }
+    }
+    // Area for encountering Arceus.
+    if (this->x() > 33*32 && this->y() > 1*32 && this->x() < 37*32 && this->y() < 4*32) {
+        Grid::encounter();
     }
 }

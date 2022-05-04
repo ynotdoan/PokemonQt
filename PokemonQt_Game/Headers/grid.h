@@ -25,7 +25,6 @@ public:
     static bool encounterChance();
     static void encounter();
 
-
     QGraphicsPixmapItem *block;
 };
 

@@ -1,3 +1,4 @@
+#include <QTimer>
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QPixmap>
@@ -22,7 +23,7 @@ Grid::~Grid()
     delete this->scene; delete this->block;
 }
 
-/*
+
 void Grid::addGrid()
 {
     // Initialize 2d grid vector and insert grid squares
@@ -40,7 +41,7 @@ void Grid::addGrid()
         }
     }
 }
-*/
+
 
 void Grid::addCollisions()
 {
@@ -122,4 +123,5 @@ void Grid::encounter()
     QWidget *battle_window = new QWidget();
     battle_window->setFixedSize(600, 400);
     battle_window->show();
+    //    battle_window->hide();
 }

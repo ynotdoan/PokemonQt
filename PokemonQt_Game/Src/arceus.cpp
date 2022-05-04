@@ -11,7 +11,7 @@ Arceus::Arceus(QGraphicsScene *scene): QGraphicsPixmapItem()
 
 Arceus::~Arceus()
 {
-
+    delete this->scene; delete this->arc;
 }
 
 void Arceus::addArceus()
