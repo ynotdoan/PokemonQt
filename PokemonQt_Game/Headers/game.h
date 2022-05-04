@@ -30,6 +30,8 @@ public:
     void addMap();
     void run();
 */
+private slots:
+    void on_intro_button_released();
 };
 
 #endif // GAME_H

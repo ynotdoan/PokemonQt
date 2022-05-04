@@ -15,20 +15,69 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: white;</string>
    </property>
-   <widget class="QLabel" name="intro_screen">
+   <widget class="QStackedWidget" name="content">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>500</width>
-      <height>455</height>
+      <width>512</width>
+      <height>512</height>
      </rect>
     </property>
-    <property name="text">
-     <string>TextLabel</string>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="Intro">
+     <widget class="QLabel" name="intro_scene">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>512</width>
+        <height>512</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="intro_button">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>512</width>
+        <height>512</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+border: 0;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="World">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-288</y>
+        <width>512</width>
+        <height>800</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: url(:/map/Assets/overworld.png);</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Battle"/>
+    <widget class="QWidget" name="page_4"/>
    </widget>
   </widget>
  </widget>

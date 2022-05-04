@@ -8,17 +8,22 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
 {
     this->ui->setupUi(this);
 
-//    this->ui->centralwidget->setStyleSheet("background-image:url(':/map/assets/overworld1.png') no-repeat;");
-    intro = new QMovie(":/map/pokemonstartscreen.gif");
-    intro->setScaledSize(QSize(50, 50));
-    ui->intro_screen->setMovie(intro);
+    intro = new QMovie(":/map/Assets/introscreen.gif");
+    ui->intro_scene->setMovie(intro);
     intro->start();
+//    this->ui->label->setStyleSheet("background:url(':/map/assets/overworld.png') no-repeat;");
 }
 
 Game::~Game()
 {
     delete this->ui;
 }
+
+void Game::on_intro_button_released()
+{
+    this->ui->content->setCurrentIndex(1);
+}
+
 
 //Game::Game(QWidget *parent)
 //{

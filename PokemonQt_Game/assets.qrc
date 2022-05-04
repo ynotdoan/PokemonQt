@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/map">
-        <file>Assets/overworld1.png</file>
         <file>Assets/collision_square.png</file>
-        <file>Assets/pokemonstartsceen.gif</file>
+        <file>Assets/introscreen.gif</file>
+        <file>Assets/overworld.png</file>
     </qresource>
     <qresource prefix="/chars">
         <file>Assets/player.png</file>
