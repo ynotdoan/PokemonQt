@@ -4,7 +4,7 @@ QT  += core gui multimedia
 # for QT5
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-config  += c++11
+config  += c++14
 
 # name of app
 TARGET = PokemonQt
@@ -16,13 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # All .cpp files
 SOURCES += \
+    Src/boss.cpp \
     Src/main.cpp \
-    Src/game.cpp
+    Src/game.cpp \
+    Src/player.cpp \
 
 # All .h files
 HEADERS += \
-    Headers/game.h
-
+    Headers/game.h \
+    Headers/player.h \
+    Headers/boss.h
 
 RESOURCES += \
     assets.qrc

@@ -1,14 +1,14 @@
 <RCC>
     <qresource prefix="/map">
-        <file>Assets/collision_square.png</file>
-        <file>Assets/introscreen.gif</file>
         <file>Assets/overworld.png</file>
+        <file>Assets/introscreen.gif</file>
     </qresource>
     <qresource prefix="/chars">
         <file>Assets/player.png</file>
         <file>Assets/Pikachu.png</file>
-        <file>Assets/arceus.png</file>
-        <file>Assets/arceusnew.png</file>
         <file>Assets/arceus1.png</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>Assets/Music/introSong.mp3</file>
     </qresource>
 </RCC>

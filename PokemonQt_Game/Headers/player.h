@@ -1,32 +1,36 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QObject>
-#include <QGraphicsPixmapItem>
+#include <QPixmap>
 #include <QGraphicsItem>
-#include <QGraphicsScene>
-#include "Headers/sprite.h"
-#include "Headers/grid.h"
+#include <QImage>
 
-class Player: public QObject, public QGraphicsPixmapItem
+class Player
 {
-    Q_OBJECT
-
-    bool checkVerticalBounds();
-    bool checkHorizontalBounds();
-    bool checkCollision();
-    void checkEncounter();
-
-    QPixmap map;
-    QGraphicsScene *scene;
-    Sprite *sprite;
+    const int s = 4; // Number of animated sprite indices for each direction.
+    QPixmap *u_sprites, *d_sprites, *l_sprites, *r_sprites;
+    int u_index, d_index, l_index, r_index;
+    QImage p_image;
+    int width, height;
 
 public:
-    Player(QGraphicsScene *scene);
+    Player();
     ~Player();
 
-    void addPlayer();
-    void keyPressEvent(QKeyEvent *event);
+    QPixmap getSprite(QPixmap *sprites, int &index);
+    void updateSprite(int &index);
+    QPixmap* getUSprite();
+    int& getUSpriteIndex();
+    void setUSpriteIndex(int index);
+    QPixmap* getDSprite();
+    int& getDSpriteIndex();
+    void setDSpriteIndex(int index);
+    QPixmap* getLSprite();
+    int& getLSpriteIndex();
+    void setLSpriteIndex(int index);
+    QPixmap* getRSprite();
+    int& getRSpriteIndex();
+    void setRSpriteIndex(int index);
 };
 
 #endif // PLAYER_H

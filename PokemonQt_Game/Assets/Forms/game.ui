@@ -39,8 +39,11 @@
         <height>512</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>INTRO SCENE</string>
       </property>
      </widget>
      <widget class="QPushButton" name="intro_button">
@@ -62,7 +65,7 @@ border: 0;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="World">
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="map" native="true">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -74,6 +77,40 @@ border: 0;</string>
       <property name="styleSheet">
        <string notr="true">background: url(:/map/Assets/overworld.png);</string>
       </property>
+      <widget class="QLabel" name="p_sprite">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>744</y>
+         <width>32</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0;
+background: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="a_sprite">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>20</y>
+         <width>70</width>
+         <height>73</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0;
+background: transparent;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Battle"/>

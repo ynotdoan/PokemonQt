@@ -2,7 +2,13 @@
 #define GAME_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include <QMovie>
+#include <QMediaPlayer>
+
+#include "Headers/player.h"
+#include "Headers/boss.h"
+
 
 namespace Ui
 {
@@ -15,21 +21,21 @@ class Game: public QMainWindow
 
     Ui::Game *ui;
     QMovie *intro;
-/*
-    QGraphicsScene *scene;
+    QMediaPlayer *music_player;
     Player *player;
-    Grid *grid;
-    Arceus *arc;
-    std::vector< std::vector<Grid*> > grid_blocks;
-*/
+    Boss *boss;
+
+    bool checkVerticalBounds();
+    bool checkHorizontalBounds();
+    void addPlayer();
+    void addBoss();
+
 public:
     Game(QWidget *parent = 0);
     ~Game();
-/*
-    void setMap();
-    void addMap();
     void run();
-*/
+    void keyPressEvent(QKeyEvent *event);
+
 private slots:
     void on_intro_button_released();
 };
