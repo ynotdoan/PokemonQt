@@ -32,6 +32,7 @@ class Game: public QMainWindow
     void gameLoss();
     void initBattle();
     void initGame();
+    void animatePokemon(bool player, int shift, int time);
 
 public:
     Game(QWidget *parent = 0);

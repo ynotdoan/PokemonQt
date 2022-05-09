@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QImage>
 #include <QPixmap>
+#include <QTimer>
 
 #include "Headers/game.h"
 #include "ui_game.h"
@@ -169,6 +170,29 @@ void Game::initBattle()
     this->ui->BattleMenu->show();
 }
 
+void Game::animatePokemon(bool player, int shift, int time)
+{
+    if (player) {
+        QTimer::singleShot(time, [=] {
+            this->ui->pikachu->setGeometry(
+            this->ui->pikachu->geometry().x() + shift,
+            this->ui->pikachu->geometry().y(),
+            this->ui->pikachu->geometry().width(),
+            this->ui->pikachu->geometry().height()
+            );
+        });
+    } else {
+        QTimer::singleShot(time, [=] {
+            this->ui->arceus->setGeometry(
+            this->ui->arceus->geometry().x() + shift,
+            this->ui->arceus->geometry().y(),
+            this->ui->arceus->geometry().width(),
+            this->ui->arceus->geometry().height()
+            );
+        });
+    }
+}
+
 void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
@@ -195,6 +219,12 @@ void Game::on_Quickattack_released()
             this->gameWin();
         }
     }
+    this->animatePokemon(true, 20, 500);
+    this->animatePokemon(true, 10, 1000);
+    this->animatePokemon(false, 5, 1100);
+    this->animatePokemon(true, -10, 1200);
+    this->animatePokemon(false, -5, 1300);
+    this->animatePokemon(true, -20, 2000);
     this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
 }
 
