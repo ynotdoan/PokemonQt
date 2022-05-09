@@ -16,6 +16,7 @@ class Player
 public:
     Player();
     ~Player();
+       // void playersHealth(int amount);
 
     QPixmap getSprite(QPixmap *sprites, int &index);
     void updateSprite(int &index);

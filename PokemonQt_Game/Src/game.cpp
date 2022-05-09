@@ -1,8 +1,10 @@
 #include <QMainWindow>
 #include <QMovie>
 #include <QMediaPlayer>
-#include <QMediaPlaylist>
+//#include <QMediaPlaylist>
 #include <QDebug>
+
+
 
 #include "Headers/game.h"
 #include "ui_game.h"
@@ -25,11 +27,11 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
 //    this->playlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 
     // Loads playlist into QMediaPlayer and starts playlist.
-    this->music_player = new QMediaPlayer();
+    //this->music_player = new QMediaPlayer();
 //    this->music_player->setPlaylist(playlist);
-    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-    this->music_player->setVolume(100);
-    this->music_player->play();
+   // this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
+    //this->music_player->setVolume(100);
+    //this->music_player->play();
 
     // Creates new QMovie and loads it onto intro_screen qlabel.
     this->intro = new QMovie(":/map/Assets/introscreen.gif");
@@ -61,6 +63,7 @@ void Game::keyPressEvent(QKeyEvent *event)
     switch (event->key()) {
         // Up movement
         case Qt::Key_W:
+           qDebug() << "y" << this->ui->p_sprite->y();
             this->ui->p_sprite->setPixmap(this->player->getSprite(
                                             this->player->getUSprite(),
                                             this->player->getUSpriteIndex()
@@ -73,8 +76,12 @@ void Game::keyPressEvent(QKeyEvent *event)
             }
             this->ui->p_sprite->move(this->ui->p_sprite->x(),
                                      this->ui->p_sprite->y()-8);
-            break;
 
+
+            if(this->ui->p_sprite->y() <= 90) {
+                this->ui->content->setCurrentIndex(2);
+            }
+              break;
         // Down movement
         case Qt::Key_S:
             this->ui->p_sprite->setPixmap(this->player->getSprite(
@@ -164,9 +171,78 @@ void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
     this->ui->content->setCurrentIndex(1);
-    this->music_player->stop();
-    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
-    this->music_player->play();
+    //this->music_player->stop();
+   // this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
+    //this->music_player->play();
     this->addBoss();
     this->addPlayer();
 }
+
+void Game::on_Fight_released()
+{
+    qDebug() << "Fight";
+    this->ui->menu->hide();
+}
+
+
+void Game::on_Quickattack_released()
+{
+    /*
+    if (this->ui->ArceusHealth->value() == 0) {
+        this->ui->content->setCurrentIndex(3);
+    }
+    */
+    int Damage = rand()%(15-5 + 1) + 5;
+    if(Damage >= this->ui->ArceusHealth->value()) {
+        //Damage = rand() % (this->ui->ArceusHealth->value() - 1 +1) + 1;
+        this->ui->ArceusHealth->setValue(0);
+        /*
+        if (this->ui->ArceusHealth->value() == 0) {
+
+            this->ui->content->setCurrentIndex(3);
+        }
+        */
+
+    }
+    qDebug()  << Damage;
+    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+}
+
+
+void Game::on_shock_released()
+{
+    int Damage = rand()%(25-10 + 1) + 10;
+    if(Damage >= this->ui->ArceusHealth->value()) {
+        //Damage = rand() % (this->ui->ArceusHealth->value() - 1 +1) + 1;
+        this->ui->ArceusHealth->setValue(0);
+        /*
+        if (this->ui->ArceusHealth->value() == 0) {
+
+            this->ui->content->setCurrentIndex(3);
+        }
+        */
+
+    }
+    qDebug()  << Damage;
+    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+}
+
+
+void Game::on_ArceusHealth_valueChanged(int value)
+{
+
+
+}
+
+
+void Game::on_Pikachuhealth_valueChanged(int value)
+{
+
+}
+
+
+void Game::on_Run_released()
+{
+     this->ui->content->setCurrentIndex(1);
+}
+

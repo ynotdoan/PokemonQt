@@ -113,9 +113,8 @@ background: transparent;</string>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="Battle"/>
-    <widget class="QWidget" name="end_scene">
-     <widget class="QWidget" name="win" native="true">
+    <widget class="QWidget" name="Battle">
+     <widget class="QWidget" name="battlescreen" native="true">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -124,44 +123,316 @@ background: transparent;</string>
         <height>512</height>
        </rect>
       </property>
-      <widget class="QLabel" name="p_win">
+      <property name="palette">
+       <palette>
+        <active/>
+        <inactive/>
+        <disabled/>
+       </palette>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: url(:/map/Assets/battlefinal.png)</string>
+      </property>
+      <widget class="QLabel" name="pikachu">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>150</y>
-         <width>171</width>
-         <height>171</height>
+         <x>0</x>
+         <y>170</y>
+         <width>321</width>
+         <height>331</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(:/map/Assets/pika.png)</string>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
        </property>
       </widget>
-     </widget>
-     <widget class="QWidget" name="loss" native="true">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>512</width>
-        <height>512</height>
-       </rect>
-      </property>
-      <widget class="QLabel" name="p_loss">
+      <widget class="QLabel" name="arceus">
        <property name="geometry">
         <rect>
-         <x>110</x>
-         <y>200</y>
-         <width>301</width>
-         <height>301</height>
+         <x>280</x>
+         <y>0</y>
+         <width>231</width>
+         <height>241</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background : url(:/map/Assets/arceusf.gif) </string>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+      </widget>
+      <widget class="QWidget" name="Fightmenu" native="true">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>320</y>
+         <width>241</width>
+         <height>181</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background : url()</string>
+       </property>
+       <widget class="QPushButton" name="Quickattack">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>80</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>QuickAttack</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="shock">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>90</y>
+          <width>80</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Shock</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="Pikachuhealth">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>-10</y>
+          <width>191</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:  rgb(85, 0, 255)</string>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+        <property name="textVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QWidget" name="menu" native="true">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>20</y>
+          <width>241</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: url()</string>
+        </property>
+        <widget class="QPushButton" name="Fight">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>70</y>
+           <width>91</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Fight</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Run">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>70</y>
+           <width>91</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QProgressBar" name="ArceusHealth">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>191</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Button">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>85</red>
+             <green>0</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgb(85, 0, 255)</string>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="ArceusHealth_label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>221</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color :green; color: black;</string>
+       </property>
+       <property name="text">
+        <string>Arceus's health</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="PickachuText">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>290</y>
+         <width>191</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI Black</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: black;
+</string>
+       </property>
+       <property name="text">
+        <string>Pickachu's health</string>
        </property>
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_4"/>
    </widget>
   </widget>
  </widget>
