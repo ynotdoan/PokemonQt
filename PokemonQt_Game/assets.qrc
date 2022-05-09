@@ -10,5 +10,8 @@
     </qresource>
     <qresource prefix="/sounds">
         <file>Assets/Music/introSong.mp3</file>
+        <file>Assets/Music/battle.mp3</file>
+        <file>Assets/Music/ending1.mp3</file>
+        <file>Assets/Music/route.mp3</file>
     </qresource>
 </RCC>

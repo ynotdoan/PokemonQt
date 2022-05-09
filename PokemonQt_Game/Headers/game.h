@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QMovie>
 #include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 #include "Headers/player.h"
 #include "Headers/boss.h"
@@ -22,6 +23,7 @@ class Game: public QMainWindow
     Ui::Game *ui;
     QMovie *intro;
     QMediaPlayer *music_player;
+    QMediaPlaylist *playlist;
     Player *player;
     Boss *boss;
 

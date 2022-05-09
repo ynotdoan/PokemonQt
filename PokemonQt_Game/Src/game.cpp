@@ -17,15 +17,18 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
     // Sets up UI
     this->ui->setupUi(this);
 
-    // Creates new playlist and adds all songs to it.
-    QMediaPlaylist *playlist = new QMediaPlaylist();
-    playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+//    // Creates new playlist and adds all songs to it.
+//    this->playlist = new QMediaPlaylist();
+//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
+//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
+//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/battle.mp3"));
+//    this->playlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 
     // Loads playlist into QMediaPlayer and starts playlist.
     this->music_player = new QMediaPlayer();
-    this->music_player->setPlaylist(playlist);
-    this->music_player->setVolume(50);
+//    this->music_player->setPlaylist(playlist);
+    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
+    this->music_player->setVolume(100);
     this->music_player->play();
 
     // Creates new QMovie and loads it onto intro_screen qlabel.
@@ -37,8 +40,8 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
 
 Game::~Game()
 {
-    delete this->ui; delete this->intro; delete this->music_player;
-    delete this->player; delete this->boss;
+    delete this->intro; delete this->music_player; //delete this->playlist;
+    delete this->ui;
 }
 
 void Game::run()
@@ -78,7 +81,7 @@ void Game::keyPressEvent(QKeyEvent *event)
                                             this->player->getDSprite(),
                                             this->player->getDSpriteIndex()
                                           ));
-            if (this->ui->p_sprite->y() == this->ui->map->height()) {
+            if (this->ui->p_sprite->y() == this->ui->map->height()-this->ui->p_sprite->height()) {
                 break;
             } else if (!this->checkVerticalBounds()) {
                 this->ui->map->move(this->ui->map->x(),
@@ -133,7 +136,7 @@ void Game::keyPressEvent(QKeyEvent *event)
 bool Game::checkVerticalBounds()
 {
     return (this->ui->p_sprite->y() <= this->ui->map->y()+this->ui->World->height()/2 ||
-            this->ui->p_sprite->y() >= this->ui->map->height()-this->ui->World->height()/2);
+            this->ui->p_sprite->y() >= (this->ui->map->height()-this->ui->World->height()/2));
 }
 
 bool Game::checkHorizontalBounds()
@@ -161,6 +164,9 @@ void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
     this->ui->content->setCurrentIndex(1);
+    this->music_player->stop();
+    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
+    this->music_player->play();
     this->addBoss();
     this->addPlayer();
 }
