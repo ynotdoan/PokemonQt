@@ -114,7 +114,54 @@ background: transparent;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="Battle"/>
-    <widget class="QWidget" name="page_4"/>
+    <widget class="QWidget" name="end_scene">
+     <widget class="QWidget" name="win" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>512</width>
+        <height>512</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="p_win">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>150</y>
+         <width>171</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="loss" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>512</width>
+        <height>512</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="p_loss">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>200</y>
+         <width>301</width>
+         <height>301</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
