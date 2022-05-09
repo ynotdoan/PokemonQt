@@ -20,14 +20,14 @@
    <widget class="QStackedWidget" name="content">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>-10</x>
+      <y>-10</y>
       <width>512</width>
       <height>512</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Intro">
      <widget class="QLabel" name="intro_scene">
@@ -127,14 +127,68 @@ background: transparent;</string>
       <widget class="QLabel" name="p_win">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>150</y>
-         <width>171</width>
-         <height>171</height>
+         <x>80</x>
+         <y>130</y>
+         <width>271</width>
+         <height>261</height>
         </rect>
        </property>
        <property name="text">
         <string>TextLabel</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="VictoryMessage">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>30</y>
+         <width>481</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pikachu claims victory! You have beaten Arceus!</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>420</y>
+         <width>80</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Rematch!</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>420</y>
+         <width>201</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Return to Main Menu</string>
        </property>
       </widget>
      </widget>
@@ -150,17 +204,77 @@ background: transparent;</string>
       <widget class="QLabel" name="p_loss">
        <property name="geometry">
         <rect>
-         <x>110</x>
-         <y>200</y>
-         <width>301</width>
-         <height>301</height>
+         <x>30</x>
+         <y>110</y>
+         <width>291</width>
+         <height>201</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0;
+background: transparent;</string>
        </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
       </widget>
+      <widget class="QLabel" name="GameOverMessage">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>511</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pikachu fainted! Do you want to fight against Arceus again?</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="GameOverYes">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>400</y>
+         <width>80</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Yes</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="GamveOverNo">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>400</y>
+         <width>80</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Fixedsys</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>No</string>
+       </property>
+      </widget>
      </widget>
+     <zorder>loss</zorder>
+     <zorder>win</zorder>
     </widget>
    </widget>
   </widget>

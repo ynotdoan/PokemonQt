@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QMovie>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
+//#include <QMediaPlayer>
+//#include <QMediaPlaylist>
 
 #include "Headers/player.h"
 #include "Headers/boss.h"
@@ -22,8 +22,8 @@ class Game: public QMainWindow
 
     Ui::Game *ui;
     QMovie *intro;
-    QMediaPlayer *music_player;
-    QMediaPlaylist *playlist;
+    //QMediaPlayer *music_player;
+    //QMediaPlaylist *playlist;
     Player *player;
     Boss *boss;
 
@@ -37,6 +37,9 @@ public:
     ~Game();
     void run();
     void keyPressEvent(QKeyEvent *event);
+    void GameLoss();
+    void GameWin();
+
 
 private slots:
     void on_intro_button_released();
