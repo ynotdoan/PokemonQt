@@ -7,6 +7,7 @@
         <file>Assets/player.png</file>
         <file>Assets/Pikachu.png</file>
         <file>Assets/arceus1.png</file>
+        <file>Assets/Angry-Pikachu.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>Assets/Music/introSong.mp3</file>

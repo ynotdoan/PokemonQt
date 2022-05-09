@@ -4,12 +4,10 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QMovie>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
 
 #include "Headers/player.h"
 #include "Headers/boss.h"
-
+#include "Headers/musicplayer.h"
 
 namespace Ui
 {
@@ -22,10 +20,9 @@ class Game: public QMainWindow
 
     Ui::Game *ui;
     QMovie *intro;
-    QMediaPlayer *music_player;
-    QMediaPlaylist *playlist;
     Player *player;
     Boss *boss;
+    MusicPlayer mp;
 
     bool checkVerticalBounds();
     bool checkHorizontalBounds();

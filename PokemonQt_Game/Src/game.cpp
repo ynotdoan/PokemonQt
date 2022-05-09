@@ -3,6 +3,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QDebug>
+#include <QImage>
+#include <QPixmap>
 
 #include "Headers/game.h"
 #include "ui_game.h"
@@ -17,31 +19,17 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
     // Sets up UI
     this->ui->setupUi(this);
 
-//    // Creates new playlist and adds all songs to it.
-//    this->playlist = new QMediaPlaylist();
-//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
-//    this->playlist->addMedia(QUrl("qrc:/sounds/Assets/Music/battle.mp3"));
-//    this->playlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
-
-    // Loads playlist into QMediaPlayer and starts playlist.
-    this->music_player = new QMediaPlayer();
-//    this->music_player->setPlaylist(playlist);
-    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-    this->music_player->setVolume(100);
-    this->music_player->play();
+    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
 
     // Creates new QMovie and loads it onto intro_screen qlabel.
     this->intro = new QMovie(":/map/Assets/introscreen.gif");
     this->ui->intro_scene->setMovie(intro);
     this->intro->start();
-
 }
 
 Game::~Game()
 {
-    delete this->intro; delete this->music_player; //delete this->playlist;
-    delete this->ui;
+    delete this->intro; delete this->ui;
 }
 
 void Game::run()
@@ -65,6 +53,10 @@ void Game::keyPressEvent(QKeyEvent *event)
                                             this->player->getUSprite(),
                                             this->player->getUSpriteIndex()
                                           ));
+            if (this->ui->p_sprite->y() <= 80) {
+                this->ui->content->setCurrentIndex(2);
+                this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/battle.mp3"));
+            }
             if (this->ui->p_sprite->y() == this->ui->map->y()) {
                 break;
             } else if (!this->checkVerticalBounds()) {
@@ -164,9 +156,7 @@ void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
     this->ui->content->setCurrentIndex(1);
-    this->music_player->stop();
-    this->music_player->setMedia(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
-    this->music_player->play();
+    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
     this->addBoss();
     this->addPlayer();
 }
