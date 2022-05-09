@@ -30,6 +30,8 @@ class Game: public QMainWindow
     void addBoss();
     void gameWin();
     void gameLoss();
+    void initBattle();
+    void initGame();
 
 public:
     Game(QWidget *parent = 0);
@@ -43,7 +45,13 @@ private slots:
     void on_Quickattack_released();
     void on_shock_released();
     void on_Run_released();
-
+    void on_YesRun_released();
+    void on_NoRun_released();
+    void on_Back_released();
+    void on_GameOverYes_released();
+    void on_GamveOverNo_released();
+    void on_WinYes_released();
+    void on_WinNo_released();
 };
 
 #endif // GAME_H

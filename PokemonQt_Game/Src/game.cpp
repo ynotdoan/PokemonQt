@@ -19,12 +19,7 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
     // Sets up UI
     this->ui->setupUi(this);
 
-    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-
-    // Creates new QMovie and loads it onto intro_screen qlabel.
-    this->intro = new QMovie(":/map/Assets/introscreen.gif");
-    this->ui->intro_scene->setMovie(intro);
-    this->intro->start();
+    this->initGame();
 }
 
 Game::~Game()
@@ -35,6 +30,20 @@ Game::~Game()
 void Game::run()
 {
     this->show(); // Shows the ui when called.
+}
+
+void Game::initGame()
+{
+    this->ui->content->setCurrentIndex(0);
+    this->ui->p_sprite->setGeometry(QRect(240, 744, 32, 50));
+    this->ui->map->setGeometry(QRect(0, -288, 512, 800));
+
+    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
+
+    // Creates new QMovie and loads it onto intro_screen qlabel.
+    this->intro = new QMovie(":/map/Assets/introscreen.gif");
+    this->ui->intro_scene->setMovie(intro);
+    this->intro->start();
 }
 
 void Game::keyPressEvent(QKeyEvent *event)
@@ -54,6 +63,7 @@ void Game::keyPressEvent(QKeyEvent *event)
                                             this->player->getUSpriteIndex()
                                           ));
             if (this->ui->p_sprite->y() <= 80) {
+                this->initBattle();
                 this->ui->content->setCurrentIndex(2);
                 this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/battle.mp3"));
             }
@@ -152,19 +162,26 @@ void Game::addBoss()
     this->ui->a_sprite->setPixmap(boss->getBoss("Arceus"));
 }
 
+void Game::initBattle()
+{
+    this->ui->FightMenu->hide();
+    this->ui->RunMenu->hide();
+    this->ui->BattleMenu->show();
+}
+
 void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
     this->ui->content->setCurrentIndex(1);
     this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
-    this->addBoss();
     this->addPlayer();
+    this->addBoss();
 }
 
 void Game::on_Fight_released()
 {
-    qDebug() << "Fight";
-    this->ui->menu->hide();
+    this->ui->BattleMenu->hide();
+    this->ui->FightMenu->show();
 }
 
 
@@ -186,22 +203,42 @@ void Game::on_shock_released()
 {
     int Damage = rand()%(25-10 + 1) + 10;
     if(Damage >= this->ui->ArceusHealth->value()) {
-        //Damage = rand() % (this->ui->ArceusHealth->value() - 1 +1) + 1;
         this->ui->ArceusHealth->setValue(0);
         if (this->ui->ArceusHealth->value() == 0) {
             this->gameWin();
             this->ui->content->setCurrentIndex(3);
         }
-
-
     }
-    qDebug()  << Damage;
     this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+    this->ui->FightMenu->hide();
+    this->ui->BattleMenu->show();
+}
+
+void Game::on_Back_released()
+{
+    this->ui->FightMenu->hide();
+    this->ui->BattleMenu->show();
 }
 
 void Game::on_Run_released()
 {
-     this->ui->content->setCurrentIndex(1);
+     this->ui->BattleMenu->hide();
+     this->ui->RunMenu->show();
+}
+
+void Game::on_YesRun_released()
+{
+    // If user confirms they want to run from battle, the game state will
+    // return them to the map.
+    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/route.mp3"));
+    this->ui->content->setCurrentIndex(1);
+}
+
+
+void Game::on_NoRun_released()
+{
+    this->ui->RunMenu->hide();
+    this->ui->BattleMenu->show();
 }
 
 void Game::gameLoss(){
@@ -213,5 +250,27 @@ void Game::gameWin(){
     this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/ending1.mp3"));
     QPixmap happypikachu(":/chars/Assets/PikachuHappySprite.png");
     ui->p_win->setPixmap(happypikachu.scaled(300,300, Qt::KeepAspectRatio));
+}
+
+void Game::on_GameOverYes_released()
+{
+    this->initGame();
+}
+
+
+void Game::on_GamveOverNo_released()
+{
+    QApplication::quit();
+}
+
+void Game::on_WinYes_released()
+{
+    this->initGame();
+}
+
+
+void Game::on_WinNo_released()
+{
+    QApplication::quit();
 }
 

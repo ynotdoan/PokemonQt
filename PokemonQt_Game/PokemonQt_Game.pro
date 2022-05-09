@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # All .cpp files
 SOURCES += \
     Src/boss.cpp \
-    Src/end.cpp \
     Src/main.cpp \
     Src/game.cpp \
     Src/musicplayer.cpp \
@@ -28,8 +27,7 @@ HEADERS += \
     Headers/game.h \
     Headers/player.h \
     Headers/boss.h \
-    Headers/musicplayer.h \
-    Headers/end.h
+    Headers/musicplayer.h
 
 RESOURCES += \
     assets.qrc

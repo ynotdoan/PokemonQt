@@ -168,111 +168,52 @@ background: transparent;</string>
         <string/>
        </property>
       </widget>
-      <widget class="QWidget" name="Fightmenu" native="true">
+      <widget class="QWidget" name="BattleMenu" native="true">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>320</y>
-         <width>241</width>
-         <height>181</height>
+         <x>400</x>
+         <y>380</y>
+         <width>111</width>
+         <height>130</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">background : url()</string>
        </property>
-       <widget class="QPushButton" name="Quickattack">
+       <widget class="QPushButton" name="Run">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>90</y>
-          <width>80</width>
-          <height>41</height>
+          <x>10</x>
+          <y>70</y>
+          <width>91</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="text">
-         <string>QuickAttack</string>
+         <string>Run</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="shock">
+       <widget class="QPushButton" name="Fight">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>90</y>
-          <width>80</width>
-          <height>41</height>
+          <x>10</x>
+          <y>10</y>
+          <width>91</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="text">
-         <string>Shock</string>
+         <string>Fight</string>
         </property>
        </widget>
-       <widget class="QProgressBar" name="Pikachuhealth">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>-10</y>
-          <width>191</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:  rgb(85, 0, 255)</string>
-        </property>
-        <property name="value">
-         <number>100</number>
-        </property>
-        <property name="textVisible">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QWidget" name="menu" native="true">
-        <property name="geometry">
-         <rect>
-          <x>-10</x>
-          <y>20</y>
-          <width>241</width>
-          <height>161</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: url()</string>
-        </property>
-        <widget class="QPushButton" name="Fight">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>70</y>
-           <width>91</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Fight</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="Run">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>70</y>
-           <width>91</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Run</string>
-         </property>
-        </widget>
-       </widget>
+       <zorder>Fight</zorder>
+       <zorder>Run</zorder>
       </widget>
       <widget class="QProgressBar" name="ArceusHealth">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
+         <y>30</y>
          <width>191</width>
          <height>41</height>
         </rect>
@@ -382,7 +323,7 @@ background: transparent;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>10</y>
          <width>221</width>
          <height>21</height>
         </rect>
@@ -397,10 +338,10 @@ background: transparent;</string>
         <enum>Qt::RightToLeft</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color :green; color: black;</string>
+        <string notr="true">background: transparent;</string>
        </property>
        <property name="text">
-        <string>Arceus's health</string>
+        <string>Arceus</string>
        </property>
        <property name="textFormat">
         <enum>Qt::AutoText</enum>
@@ -409,8 +350,8 @@ background: transparent;</string>
       <widget class="QLabel" name="PickachuText">
        <property name="geometry">
         <rect>
-         <x>290</x>
-         <y>290</y>
+         <x>280</x>
+         <y>310</y>
          <width>191</width>
          <height>21</height>
         </rect>
@@ -423,13 +364,156 @@ background: transparent;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: black;
-</string>
+        <string notr="true">background:transparent;</string>
        </property>
        <property name="text">
-        <string>Pickachu's health</string>
+        <string>Pickachu:</string>
        </property>
       </widget>
+      <widget class="QProgressBar" name="Pikachuhealth">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>320</y>
+         <width>191</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background:  rgb(85, 0, 255)</string>
+       </property>
+       <property name="value">
+        <number>100</number>
+       </property>
+       <property name="textVisible">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="FightMenu" native="true">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>400</y>
+         <width>240</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background : url()</string>
+       </property>
+       <widget class="QPushButton" name="Quickattack">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>100</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>QuickAttack</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="shock">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>100</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Shock</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Back">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>60</y>
+          <width>50</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="RunMenu" native="true">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>430</y>
+         <width>231</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background : url()</string>
+       </property>
+       <widget class="QLabel" name="RunMessage">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>0</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Are you sure?</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="YesRun">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>100</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Yes</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="NoRun">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>30</y>
+          <width>100</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+      </widget>
+      <zorder>pikachu</zorder>
+      <zorder>arceus</zorder>
+      <zorder>ArceusHealth</zorder>
+      <zorder>ArceusHealth_label</zorder>
+      <zorder>PickachuText</zorder>
+      <zorder>Pikachuhealth</zorder>
+      <zorder>BattleMenu</zorder>
+      <zorder>FightMenu</zorder>
+      <zorder>RunMenu</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="end_scene">
@@ -445,8 +529,8 @@ background: transparent;</string>
       <widget class="QLabel" name="p_loss">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>110</y>
+         <x>100</x>
+         <y>160</y>
          <width>291</width>
          <height>201</height>
         </rect>
@@ -462,28 +546,39 @@ background: transparent;</string>
       <widget class="QLabel" name="GameOverMessage">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>40</y>
-         <width>511</width>
-         <height>20</height>
+         <x>60</x>
+         <y>60</y>
+         <width>381</width>
+         <height>111</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Fixedsys</family>
+         <pointsize>25</pointsize>
+         <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: transparent;</string>
        </property>
        <property name="text">
         <string>Pikachu fainted! Do you want to fight against Arceus again?</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QPushButton" name="GameOverYes">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>150</x>
          <y>400</y>
          <width>80</width>
-         <height>18</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
@@ -498,10 +593,10 @@ background: transparent;</string>
       <widget class="QPushButton" name="GamveOverNo">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>280</x>
          <y>400</y>
          <width>80</width>
-         <height>18</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
@@ -526,10 +621,10 @@ background: transparent;</string>
       <widget class="QLabel" name="p_win">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>130</y>
-         <width>271</width>
-         <height>261</height>
+         <x>100</x>
+         <y>90</y>
+         <width>321</width>
+         <height>371</height>
         </rect>
        </property>
        <property name="text">
@@ -539,28 +634,44 @@ background: transparent;</string>
       <widget class="QLabel" name="VictoryMessage">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>30</y>
-         <width>481</width>
-         <height>20</height>
+         <x>100</x>
+         <y>80</y>
+         <width>311</width>
+         <height>91</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Fixedsys</family>
+         <pointsize>25</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+         <kerning>true</kerning>
         </font>
+       </property>
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: transparent;</string>
        </property>
        <property name="text">
         <string>Pikachu claims victory! You have beaten Arceus!</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="WinNo">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>420</y>
-         <width>80</width>
-         <height>18</height>
+         <x>280</x>
+         <y>440</y>
+         <width>151</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
@@ -569,16 +680,16 @@ background: transparent;</string>
         </font>
        </property>
        <property name="text">
-        <string>Rematch!</string>
+        <string>Quit</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="WinYes">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>420</y>
-         <width>201</width>
-         <height>18</height>
+         <x>90</x>
+         <y>440</y>
+         <width>151</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="font">
