@@ -160,3 +160,58 @@ void Game::on_intro_button_released()
     this->addBoss();
     this->addPlayer();
 }
+
+void Game::on_Fight_released()
+{
+    qDebug() << "Fight";
+    this->ui->menu->hide();
+}
+
+
+void Game::on_Quickattack_released()
+{
+    int Damage = rand()%(15-5 + 1) + 5;
+    if(Damage >= this->ui->ArceusHealth->value()) {
+        this->ui->ArceusHealth->setValue(0);
+        if (this->ui->ArceusHealth->value() == 0) {
+            this->ui->content->setCurrentIndex(3);
+            this->gameWin();
+        }
+    }
+    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+}
+
+
+void Game::on_shock_released()
+{
+    int Damage = rand()%(25-10 + 1) + 10;
+    if(Damage >= this->ui->ArceusHealth->value()) {
+        //Damage = rand() % (this->ui->ArceusHealth->value() - 1 +1) + 1;
+        this->ui->ArceusHealth->setValue(0);
+        if (this->ui->ArceusHealth->value() == 0) {
+            this->gameWin();
+            this->ui->content->setCurrentIndex(3);
+        }
+
+
+    }
+    qDebug()  << Damage;
+    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+}
+
+void Game::on_Run_released()
+{
+     this->ui->content->setCurrentIndex(1);
+}
+
+void Game::gameLoss(){
+    QPixmap angrypikachu(":/chars/Assets/Angry-Pikachu.png");
+    ui->p_loss->setPixmap(angrypikachu.scaled(300, 300, Qt::KeepAspectRatio));
+}
+
+void Game::gameWin(){
+    this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/ending1.mp3"));
+    QPixmap happypikachu(":/chars/Assets/PikachuHappySprite.png");
+    ui->p_win->setPixmap(happypikachu.scaled(300,300, Qt::KeepAspectRatio));
+}
+

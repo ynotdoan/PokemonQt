@@ -28,6 +28,8 @@ class Game: public QMainWindow
     bool checkHorizontalBounds();
     void addPlayer();
     void addBoss();
+    void gameWin();
+    void gameLoss();
 
 public:
     Game(QWidget *parent = 0);
@@ -37,6 +39,11 @@ public:
 
 private slots:
     void on_intro_button_released();
+    void on_Fight_released();
+    void on_Quickattack_released();
+    void on_shock_released();
+    void on_Run_released();
+
 };
 
 #endif // GAME_H
