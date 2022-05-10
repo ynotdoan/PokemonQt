@@ -175,6 +175,11 @@ void Game::initBattle()
     this->ui->BattleMenu->show();
 }
 
+/* animatePokemon() uses a QTimer to delay a certain amount of time and shift a Pokemon's
+ * position. The function takes in a bool for whether or not to shift the player or
+ * the opponent. The function also takes in shift, which is how much the Pokemon should
+ * shift by, and time, which is how much time is delayed between each shift.
+ */
 void Game::animatePokemon(bool player, int shift, int time)
 {
     if (player) {
@@ -198,6 +203,13 @@ void Game::animatePokemon(bool player, int shift, int time)
     }
 }
 
+/* dealDamage() will take in a bool to check who is dealing the damage. If true, then it means
+ * the players is inflicting damage to the opponent etc. The function also takes in a string
+ * move, which is the move the Pokemon is using, and a random number for damage is generated
+ * depending of the move chosen. Then the animatePokemon() function is called multiple times
+ * to make it look like the Pokemon are attacking each other. Finally the health bars are updated
+ * by subtracted the current health with the random damage number.
+ */
 void Game::dealDamage(bool player, std::string move)
 {
     int damage = 0;
@@ -237,21 +249,28 @@ void Game::dealDamage(bool player, std::string move)
         }
         this->ui->Pikachuhealth->setValue(this->ui->Pikachuhealth->value()-damage);
     }
+    // Hides the fight menu and shows the battle menu again.
     this->ui->FightMenu->hide();
     this->ui->BattleMenu->show();
 }
 
 void Game::arceusAttack()
 {
+    // string m is a random move that is recieved from setBossMove in Boss class.
     std::string m = this->boss->setBossMove("Arceus");
+    // Call dealDamage() and setText() with the random move and pass false because Arceus
+    // is not the player.
     this->dealDamage(false, m);
     this->setText(false, m);
+    // Set player's turn to true after all Arceus moves are done.
     this->player_turn = true;
 }
 
 void Game::setText(bool player, std::string move)
 {
     QString text;
+    // If it's the player's turn, check the move and display the text of the player using
+    // that move. Same happens if it's opponent's turn and the battle_text in .ui is updated.
     if (player) {
         if (move == "QA") {
             text = "Pikachu used Quick Attack!";
@@ -279,6 +298,7 @@ void Game::on_intro_button_released()
 
 void Game::on_Fight_released()
 {
+    // If it is the player's turn, then clicking on Fight will show the move options.
     if (this->player_turn) {
         this->ui->BattleMenu->hide();
         this->ui->FightMenu->show();
@@ -287,6 +307,8 @@ void Game::on_Fight_released()
 
 void Game::on_Quickattack_released()
 {
+    // Calls dealDamage() and setText() and sets player_turn to false so player can't
+    // choose a move. Delays time by 4 secs then calls arceusAttack().
     this->dealDamage(true, "QA");
     this->setText(true, "QA");
     this->player_turn = false;
@@ -295,6 +317,8 @@ void Game::on_Quickattack_released()
 
 void Game::on_shock_released()
 {
+    // Calls dealDamage() and setText() and sets player_turn to false so player can't
+    // choose a move. Delays time by 4 secs then calls arceusAttack().
     this->dealDamage(true, "SK");
     this->setText(true, "SK");
     this->player_turn = false;
@@ -303,12 +327,14 @@ void Game::on_shock_released()
 
 void Game::on_Back_released()
 {
+    // Hides fight menu and shows battle menu.
     this->ui->FightMenu->hide();
     this->ui->BattleMenu->show();
 }
 
 void Game::on_Run_released()
 {
+    // If it is the player's turn, then clicking on Run will ask if the player wants to run.
     if (this->player_turn) {
         this->ui->BattleMenu->hide();
         this->ui->RunMenu->show();
@@ -326,10 +352,15 @@ void Game::on_YesRun_released()
 
 void Game::on_NoRun_released()
 {
+    // If user says no to running away, the run menu is hidden and battle menu will be shown.
     this->ui->RunMenu->hide();
     this->ui->BattleMenu->show();
 }
 
+/* For gameLoss() and gameWin(), the function will update the music, then load in an image. then
+ * the opposite outcome will be hidden and the appropiate outcome will be shown. The ui updates
+ * to show the end_scene index.
+ */
 void Game::gameLoss(){
     this->mp.setMusic(QUrl());
     QPixmap angrypikachu(":/chars/Assets/Angry-Pikachu.png");
@@ -350,23 +381,23 @@ void Game::gameWin(){
 
 void Game::on_GameOverYes_released()
 {
-    this->initGame();
+    this->initGame(); // Starts game from title screen again.
 }
 
 
 void Game::on_GamveOverNo_released()
 {
-    QApplication::quit();
+    QApplication::quit(); // Closes program.
 }
 
 void Game::on_WinYes_released()
 {
-    this->initGame();
+    this->initGame(); // Starts game from title screen again.
 }
 
 
 void Game::on_WinNo_released()
 {
-    QApplication::quit();
+    QApplication::quit(); // Closes program.
 }
 

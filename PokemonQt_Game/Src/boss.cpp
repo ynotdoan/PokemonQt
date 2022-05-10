@@ -20,6 +20,7 @@ QPixmap Boss::getBoss(std::string name)
 
 std::string Boss::setBossMove(std::string name)
 {
+    // Chooses a random number between 1 and 2 and returns one of two moves for a boss.
     int move = (rand() % 2) + 1;
     if (name == "Arceus") {
         if (move == 1) return "JD";
