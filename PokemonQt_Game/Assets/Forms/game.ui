@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Intro">
      <widget class="QLabel" name="intro_scene">
@@ -367,7 +367,7 @@ background: transparent;</string>
         <string notr="true">background:transparent;</string>
        </property>
        <property name="text">
-        <string>Pickachu:</string>
+        <string>Pikachu:</string>
        </property>
       </widget>
       <widget class="QProgressBar" name="Pikachuhealth">
