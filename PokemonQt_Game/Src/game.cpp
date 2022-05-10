@@ -19,7 +19,6 @@ Game::Game(QWidget *parent): QMainWindow(parent), ui(new Ui::Game)
 {
     // Sets up UI
     this->ui->setupUi(this);
-
     this->initGame();
 }
 
@@ -35,13 +34,16 @@ void Game::run()
 
 void Game::initGame()
 {
+    // Shows the intro screen in ui and sets player sprite and map to starting positions.
     this->ui->content->setCurrentIndex(0);
     this->ui->p_sprite->setGeometry(QRect(240, 744, 32, 50));
     this->ui->map->setGeometry(QRect(0, -288, 512, 800));
-
+    // Set pokemons' healths to full
+    this->ui->ArceusHealth->setValue(100);
+    this->ui->Pikachuhealth->setValue(100);
+    // Plays intro scene music.
     this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/introSong.mp3"));
-
-    // Creates new QMovie and loads it onto intro_screen qlabel.
+    // Creates new QMovie and loads it onto intro_screen qlabel to show intro gif.
     this->intro = new QMovie(":/map/Assets/introscreen.gif");
     this->ui->intro_scene->setMovie(intro);
     this->intro->start();
@@ -63,12 +65,13 @@ void Game::keyPressEvent(QKeyEvent *event)
                                             this->player->getUSprite(),
                                             this->player->getUSpriteIndex()
                                           ));
+            // If player's y-value is less than 80, start battle against Arceus and changing
+            // ui scene to battle index. Change music to battle music.
             if (this->ui->p_sprite->y() <= 80) {
                 this->initBattle();
                 this->ui->content->setCurrentIndex(2);
                 this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/battle.mp3"));
-            }
-            if (this->ui->p_sprite->y() == this->ui->map->y()) {
+            } else if (this->ui->p_sprite->y() == this->ui->map->y()) {
                 break;
             } else if (!this->checkVerticalBounds()) {
                 this->ui->map->move(this->ui->map->x(),
@@ -165,6 +168,8 @@ void Game::addBoss()
 
 void Game::initBattle()
 {
+    this->player_turn = true;
+    // Hides all other battle options so all buttons don't appear at once.
     this->ui->FightMenu->hide();
     this->ui->RunMenu->hide();
     this->ui->BattleMenu->show();
@@ -193,6 +198,75 @@ void Game::animatePokemon(bool player, int shift, int time)
     }
 }
 
+void Game::dealDamage(bool player, std::string move)
+{
+    int damage = 0;
+
+    if (player) {
+        if (move == "SK") {
+            damage = rand()%(20) + 10;
+        } else if (move == "QA") {
+            damage = rand()%(10) + 5;
+        }
+        this->animatePokemon(true, 20, 500);
+        this->animatePokemon(true, 10, 1000);
+        this->animatePokemon(false, 5, 1100);
+        this->animatePokemon(true, -10, 1200);
+        this->animatePokemon(false, -5, 1300);
+        this->animatePokemon(true, -20, 2000);
+        if (damage >= this->ui->ArceusHealth->value()) {
+            this->ui->ArceusHealth->setValue(0);
+            this->gameWin();
+        }
+        this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-damage);
+    } else {
+        if (move == "JD") {
+            damage = rand()%(30) + 10;
+        } else if (move == "TA") {
+            damage = rand()%(10) + 5;
+        }
+        this->animatePokemon(false, -20, 500);
+        this->animatePokemon(false, -10, 1000);
+        this->animatePokemon(true, -5, 1100);
+        this->animatePokemon(false, 10, 1200);
+        this->animatePokemon(true, 5, 1300);
+        this->animatePokemon(false, 20, 2000);
+        if (damage >= this->ui->Pikachuhealth->value()) {
+            this->ui->Pikachuhealth->setValue(0);
+            this->gameLoss();
+        }
+        this->ui->Pikachuhealth->setValue(this->ui->Pikachuhealth->value()-damage);
+    }
+    this->ui->FightMenu->hide();
+    this->ui->BattleMenu->show();
+}
+
+void Game::arceusAttack()
+{
+    this->dealDamage(false, "TA");
+    this->setText(false, "TA");
+    this->player_turn = true;
+}
+
+void Game::setText(bool player, std::string move)
+{
+    QString text;
+    if (player) {
+        if (move == "QA") {
+            text = "Pikachu used Quick Attack!";
+        } else if (move == "SK") {
+            text = "Pikachu used Shock!";
+        }
+    } else {
+        if (move == "JD") {
+            text = "Arceus used Judgement!";
+        } else if (move == "TA") {
+            text = "Arceus used Tackle!";
+        }
+    }
+    this->ui->battle_text->setText(text);
+}
+
 void Game::on_intro_button_released()
 {
     // When player clicks and releases title screen, load all game components.
@@ -204,44 +278,26 @@ void Game::on_intro_button_released()
 
 void Game::on_Fight_released()
 {
-    this->ui->BattleMenu->hide();
-    this->ui->FightMenu->show();
+    if (this->player_turn) {
+        this->ui->BattleMenu->hide();
+        this->ui->FightMenu->show();
+    }
 }
-
 
 void Game::on_Quickattack_released()
 {
-    int Damage = rand()%(15-5 + 1) + 5;
-    if(Damage >= this->ui->ArceusHealth->value()) {
-        this->ui->ArceusHealth->setValue(0);
-        if (this->ui->ArceusHealth->value() == 0) {
-            this->ui->content->setCurrentIndex(3);
-            this->gameWin();
-        }
-    }
-    this->animatePokemon(true, 20, 500);
-    this->animatePokemon(true, 10, 1000);
-    this->animatePokemon(false, 5, 1100);
-    this->animatePokemon(true, -10, 1200);
-    this->animatePokemon(false, -5, 1300);
-    this->animatePokemon(true, -20, 2000);
-    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
+    this->dealDamage(true, "QA");
+    this->setText(true, "QA");
+    this->player_turn = false;
+    QTimer::singleShot(4000, this, SLOT(arceusAttack()));
 }
-
 
 void Game::on_shock_released()
 {
-    int Damage = rand()%(25-10 + 1) + 10;
-    if(Damage >= this->ui->ArceusHealth->value()) {
-        this->ui->ArceusHealth->setValue(0);
-        if (this->ui->ArceusHealth->value() == 0) {
-            this->gameWin();
-            this->ui->content->setCurrentIndex(3);
-        }
-    }
-    this->ui->ArceusHealth->setValue(this->ui->ArceusHealth->value()-Damage);
-    this->ui->FightMenu->hide();
-    this->ui->BattleMenu->show();
+    this->dealDamage(true, "SK");
+    this->setText(true, "SK");
+    this->player_turn = false;
+    QTimer::singleShot(4000, this, SLOT(arceusAttack()));
 }
 
 void Game::on_Back_released()
@@ -252,8 +308,10 @@ void Game::on_Back_released()
 
 void Game::on_Run_released()
 {
-     this->ui->BattleMenu->hide();
-     this->ui->RunMenu->show();
+    if (this->player_turn) {
+        this->ui->BattleMenu->hide();
+        this->ui->RunMenu->show();
+    }
 }
 
 void Game::on_YesRun_released()
@@ -272,14 +330,21 @@ void Game::on_NoRun_released()
 }
 
 void Game::gameLoss(){
+    this->mp.setMusic(QUrl());
     QPixmap angrypikachu(":/chars/Assets/Angry-Pikachu.png");
     ui->p_loss->setPixmap(angrypikachu.scaled(300, 300, Qt::KeepAspectRatio));
+    this->ui->win->hide();
+    this->ui->loss->show();
+    this->ui->content->setCurrentIndex(3);
 }
 
 void Game::gameWin(){
     this->mp.setMusic(QUrl("qrc:/sounds/Assets/Music/ending1.mp3"));
     QPixmap happypikachu(":/chars/Assets/PikachuHappySprite.png");
     ui->p_win->setPixmap(happypikachu.scaled(300,300, Qt::KeepAspectRatio));
+    this->ui->loss->hide();
+    this->ui->win->show();
+    this->ui->content->setCurrentIndex(3);
 }
 
 void Game::on_GameOverYes_released()

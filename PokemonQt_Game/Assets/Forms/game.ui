@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Intro">
      <widget class="QLabel" name="intro_scene">
@@ -505,8 +505,69 @@ background: transparent;</string>
         </property>
        </widget>
       </widget>
-      <zorder>pikachu</zorder>
+      <widget class="QLabel" name="battle_text">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>450</y>
+         <width>281</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: white;
+border: 2px solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="arceusHealthbg">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>241</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: white;
+border: 2px solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="arceusHealthbg_2">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>300</y>
+         <width>241</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: white;
+border: 2px solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
       <zorder>arceus</zorder>
+      <zorder>pikachu</zorder>
+      <zorder>arceusHealthbg_2</zorder>
+      <zorder>arceusHealthbg</zorder>
       <zorder>ArceusHealth</zorder>
       <zorder>ArceusHealth_label</zorder>
       <zorder>PickachuText</zorder>
@@ -514,6 +575,7 @@ background: transparent;</string>
       <zorder>BattleMenu</zorder>
       <zorder>FightMenu</zorder>
       <zorder>RunMenu</zorder>
+      <zorder>battle_text</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="end_scene">

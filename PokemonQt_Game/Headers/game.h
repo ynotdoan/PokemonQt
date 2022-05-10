@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QMovie>
+#include <QTimer>
 
 #include "Headers/player.h"
 #include "Headers/boss.h"
@@ -23,6 +24,7 @@ class Game: public QMainWindow
     Player *player;
     Boss *boss;
     MusicPlayer mp;
+    bool player_turn;
 
     bool checkVerticalBounds();
     bool checkHorizontalBounds();
@@ -33,6 +35,8 @@ class Game: public QMainWindow
     void initBattle();
     void initGame();
     void animatePokemon(bool player, int shift, int time);
+    void dealDamage(bool player, std::string move);
+    void setText(bool player, std::string move);
 
 public:
     Game(QWidget *parent = 0);
@@ -41,6 +45,7 @@ public:
     void keyPressEvent(QKeyEvent *event);
 
 private slots:
+    void arceusAttack();
     void on_intro_button_released();
     void on_Fight_released();
     void on_Quickattack_released();
