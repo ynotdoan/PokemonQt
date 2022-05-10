@@ -18,11 +18,11 @@ The game involves the play walking along a linear map and running into the legen
 ## Screenshots
 
 <p align="center">
-  <img width="512" height="512" src="/PokemonQt_Game/Assets/map_screenshot.png">
+  <img width="512" height="512" src="/PokemonQt_Game/Assets/Screenshots/map_screenshot.png">
 </p>
 
 <p align="center">
-  <img width="512" height="512" src="/PokemonQt_Game/Assets/battle_screenshot.png">
+  <img width="512" height="512" src="/PokemonQt_Game/Assets/Screenshots/battle_screenshot.png">
 </p>
 
 ## Installation
