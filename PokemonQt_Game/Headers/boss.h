@@ -14,6 +14,7 @@ public:
     ~Boss();
 
     QPixmap getBoss(std::string name);
+    std::string setBossMove(std::string name);
 };
 
 #endif // BOSS_H

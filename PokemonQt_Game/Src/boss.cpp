@@ -17,3 +17,12 @@ QPixmap Boss::getBoss(std::string name)
         return this->arceus;
     }
 }
+
+std::string Boss::setBossMove(std::string name)
+{
+    int move = (rand() % 2) + 1;
+    if (name == "Arceus") {
+        if (move == 1) return "JD";
+        else return "TA";
+    }
+}

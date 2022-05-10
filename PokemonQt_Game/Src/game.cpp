@@ -243,8 +243,9 @@ void Game::dealDamage(bool player, std::string move)
 
 void Game::arceusAttack()
 {
-    this->dealDamage(false, "TA");
-    this->setText(false, "TA");
+    std::string m = this->boss->setBossMove("Arceus");
+    this->dealDamage(false, m);
+    this->setText(false, m);
     this->player_turn = true;
 }
 
