@@ -1,16 +1,12 @@
 # PokemonQt
 
+<p align="center">
+  <img width="400" height="400" src="/PokemonQt_Game/Assets/introscreen.gif">
+</p>
+
 PokemonQt is a game created by four students for their Object-Oriented Programming course at UC Merced. 
 
-The game involves the player traversing an overworld and battling legendary Pokemon. The player wins if they are able to successfully win against all three legenddaries without their Pokemon fainting. 
-
-## To-do tasks
-
-* Collision hitboxes so character can't go out of bounds. 
-	* Character currently can get stuck in a collision box
-* Implement title screen
-* Implement game over screen
-* Implement battle mechanics
+The game involves the play walking along a linear map and running into the legendary pokemon Arceus. Once the player encounters Arceus, the goal is to defeat it before fainting. 
 
 ## Team contributers
 
