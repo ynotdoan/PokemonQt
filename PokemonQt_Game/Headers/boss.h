@@ -13,8 +13,8 @@ public:
     Boss();
     ~Boss();
 
-    QPixmap getBoss(std::string name);
-    std::string setBossMove(std::string name);
+    QPixmap getBoss(QString name);
+    QString setBossMove(QString name);
 };
 
 #endif // BOSS_H

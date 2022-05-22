@@ -1,7 +1,6 @@
 #include <QMainWindow>
 #include <QMovie>
 #include <QMediaPlayer>
-#include <QMediaPlaylist>
 #include <QDebug>
 #include <QImage>
 #include <QPixmap>
@@ -210,7 +209,7 @@ void Game::animatePokemon(bool player, int shift, int time)
  * to make it look like the Pokemon are attacking each other. Finally the health bars are updated
  * by subtracted the current health with the random damage number.
  */
-void Game::dealDamage(bool player, std::string move)
+void Game::dealDamage(bool player, QString move)
 {
     int damage = 0;
 
@@ -257,7 +256,7 @@ void Game::dealDamage(bool player, std::string move)
 void Game::arceusAttack()
 {
     // string m is a random move that is recieved from setBossMove in Boss class.
-    std::string m = this->boss->setBossMove("Arceus");
+    QString m = this->boss->setBossMove("Arceus");
     // Call dealDamage() and setText() with the random move and pass false because Arceus
     // is not the player.
     this->dealDamage(false, m);
@@ -266,7 +265,7 @@ void Game::arceusAttack()
     this->player_turn = true;
 }
 
-void Game::setText(bool player, std::string move)
+void Game::setText(bool player, QString move)
 {
     QString text;
     // If it's the player's turn, check the move and display the text of the player using

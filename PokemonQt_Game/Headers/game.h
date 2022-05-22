@@ -35,8 +35,8 @@ class Game: public QMainWindow
     void initBattle();
     void initGame();
     void animatePokemon(bool player, int shift, int time);
-    void dealDamage(bool player, std::string move);
-    void setText(bool player, std::string move);
+    void dealDamage(bool player, QString move);
+    void setText(bool player, QString move);
 
 public:
     Game(QWidget *parent = 0);
